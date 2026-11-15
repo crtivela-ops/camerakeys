@@ -22,7 +22,12 @@
   <link rel="canonical" href="https://camerakeys.com/">
   <meta name="theme-color" content="#111111">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=20261114c">
+  <style>
+    .rotator { position: relative; width: min(720px, 92vw); aspect-ratio: 16 / 9; margin: 8px auto 28px; border-radius: 8px; overflow: hidden; background: #1c1c1c; }
+    .rotator img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; opacity: 0; transition: opacity 1s ease; }
+    .rotator img.is-active { opacity: 1; }
+  </style>
 </head>
 <body>
   <!--
@@ -46,7 +51,7 @@
 
   <main id="main">
     <div class="rotator" aria-label="Camera Keys keychain cards">
-      <img src="assets/products/sunny-16.jpg" width="1600" height="2000" alt="3D render of the Sunny 16 keychain card.">
+      <img class="is-active" src="assets/products/sunny-16.jpg" width="1600" height="2000" alt="3D render of the Sunny 16 keychain card.">
       <img src="assets/products/depth-of-field.jpg" width="1600" height="2000" alt="3D render of the Depth of Field keychain card." loading="lazy">
       <img src="assets/products/action.jpg" width="1600" height="2000" alt="3D render of the Action keychain card." loading="lazy">
     </div>
@@ -110,5 +115,17 @@
     </section>
   </main>
 
+  <script>
+    (function () {
+      var imgs = document.querySelectorAll('.rotator img');
+      if (imgs.length < 2) return;
+      var i = 0;
+      setInterval(function () {
+        imgs[i].classList.remove('is-active');
+        i = (i + 1) % imgs.length;
+        imgs[i].classList.add('is-active');
+      }, 3000);
+    })();
+  </script>
 </body>
 </html>
