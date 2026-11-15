@@ -1,0 +1,203 @@
+/*
+  Camera Keys — styled after crtive.la:
+  near-black #111 ground, white Arial, bold uppercase centered headings,
+  one blue accent (#0073e6, hover #005bb5) on 8px-radius buttons, no rules.
+  Fonts: system Arial stack (crtive.la loads no web fonts). Liberation Sans is
+  the free, metric-compatible fallback where Arial isn't installed.
+*/
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --bg: #111111;
+  --surface: #1c1c1c;
+  --ink: #ffffff;
+  --muted: #bdbdbd;
+  --accent: #0073e6;
+  --accent-hover: #005bb5;
+  --red: #D7263D;
+  --blue: #1F6FEB;
+  --green: #2E9E5B;
+  --orange: #F28C28;
+  --font: Arial, "Liberation Sans", Helvetica, sans-serif;
+}
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+img { max-width: 100%; height: auto; display: block; }
+h1, h2, h3, p, ul, figure { margin: 0; }
+h1, h2, h3 { font-weight: 700; line-height: 1.2; text-transform: uppercase; }
+
+a { color: var(--accent); font-weight: 700; text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.skip { position: absolute; left: -9999px; top: 0; }
+.skip:focus { left: 1rem; top: 1rem; z-index: 10; background: var(--bg); color: var(--ink); padding: 0.5rem 0.75rem; }
+
+.wrap { width: min(1100px, calc(100% - 40px)); margin-inline: auto; }
+
+/* Header — centered, uppercase, like crtive.la */
+.hero { padding: 48px 0 36px; text-align: center; }
+h1 { font-size: 2.75rem; }
+.tagline {
+  margin-top: 16px;
+  font-size: 1rem;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+.hero nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px 30px;
+  margin-top: 16px;
+}
+.hero nav a {
+  color: var(--ink);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.hero nav a:hover { color: var(--accent); text-decoration: none; }
+
+.lede {
+  max-width: 800px;
+  padding: 0 0 8px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+section { padding: 48px 0; }
+h2 { font-size: 1.5rem; text-align: center; margin-bottom: 20px; }
+
+#about p, #pricing p {
+  max-width: 800px;
+  margin-inline: auto;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+#cards .intro {
+  max-width: 800px;
+  margin-inline: auto;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* Color legend */
+.legend {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  margin: 24px 0 40px;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.legend li { display: inline-flex; align-items: center; gap: 8px; }
+
+.swatch { display: inline-block; width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.swatch.hue-red,    .shot.hue-red::before    { background-color: var(--red); }
+.swatch.hue-blue,   .shot.hue-blue::before   { background-color: var(--blue); }
+.swatch.hue-green,  .shot.hue-green::before  { background-color: var(--green); }
+.swatch.hue-orange, .shot.hue-orange::before { background-color: var(--orange); }
+
+/* Product grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px 30px;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 640px) { .grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 960px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+.grid > li { display: flex; flex-direction: column; text-align: center; }
+
+.shot { border-radius: 8px; overflow: hidden; background: var(--surface); }
+.shot::before { content: ""; display: block; height: 6px; }
+.shot img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: var(--surface); }
+.shot figcaption {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.grid h3 { margin-top: 18px; font-size: 1.2rem; }
+.desc { margin-top: 8px; color: var(--muted); font-size: 1rem; line-height: 1.55; }
+.price { margin-top: auto; padding-top: 14px; font-size: 1.1rem; }
+.price .amount { font-weight: 700; }
+
+/* Buttons — crtive.la .ticket-link */
+.buy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  min-height: 44px;
+  margin-top: 14px;
+  padding: 12px 25px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s;
+}
+.buy:hover { background: var(--accent-hover); text-decoration: none; transform: scale(1.05); }
+.buy:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.buy.coming-soon {
+  background: #3a3a3a;
+  color: #bdbdbd;
+  cursor: default;
+}
+.buy.coming-soon:hover { background: #3a3a3a; transform: none; text-decoration: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .buy, .hero nav a { transition: none; }
+  .buy:hover { transform: none; }
+}
+
+#pricing .set {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+#pricing .set .buy { margin-top: 0; font-size: 1.33rem; }
+#pricing .note { color: var(--muted); font-size: 0.95rem; }
+
+footer { padding: 40px 0 28px; text-align: center; font-size: 0.9rem; }
+footer a { color: var(--ink); text-transform: uppercase; font-size: 1.1rem; }
+footer a:hover { color: var(--accent); text-decoration: none; }
+footer .copy { margin-top: 14px; }
+
+@media (max-width: 600px) {
+  h1 { font-size: 2.25rem; }
+  .hero { padding: 36px 0 28px; }
+  section { padding: 40px 0; }
+}
