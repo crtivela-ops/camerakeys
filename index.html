@@ -28,20 +28,12 @@
   <!--
     =====================================================================
     STRIPE PAYMENT LINKS
-    TODO: Replace every REPLACE_WITH_…_LINK token with the Payment Link
-    ID from the Stripe Dashboard (the part after https://buy.stripe.com/).
-    Each token appears here and on the matching Buy button, so one
-    find-and-replace updates both. See README.md for the full steps.
-    Payment Links can collect a shipping address — turn that on when
-    you create each link. Do not add Stripe.js or API keys to this site.
+    Live links (Stripe Payment Links). Do not add Stripe.js or API keys.
 
-    F-STOP:              https://buy.stripe.com/REPLACE_WITH_FSTOP_LINK
-    Depth of Field:      https://buy.stripe.com/REPLACE_WITH_DEPTH_OF_FIELD_LINK
-    Low Light:           https://buy.stripe.com/REPLACE_WITH_LOW_LIGHT_LINK
-    Sunny 16:            https://buy.stripe.com/REPLACE_WITH_SUNNY_16_LINK
-    Brighter vs Darker:  https://buy.stripe.com/REPLACE_WITH_BRIGHTER_VS_DARKER_LINK
-    Action:              https://buy.stripe.com/REPLACE_WITH_ACTION_LINK
-    Full set (optional): https://buy.stripe.com/REPLACE_WITH_SET_LINK
+    Depth of Field:  https://buy.stripe.com/eVqdR960a6rCdIi71I0Ba00
+    Sunny 16:        https://buy.stripe.com/28EfZhgEOeY8cEe3Pw0Ba01
+    Action:          https://buy.stripe.com/4gM14nagqcQ0aw6bhY0Ba04
+    Full set:        https://buy.stripe.com/dRmdR91JU3fqbAa85M0Ba05
     =====================================================================
   -->
   <a class="skip" href="#main">Skip to content</a>
@@ -89,10 +81,8 @@
             </figure>
             <h3>Depth of Field</h3>
             <p class="desc">How aperture shapes focus: a wide opening such as f/2.8 gives a shallow field with more blur; a smaller opening such as f/16 keeps more of the scene sharp.</p>
-            <!-- TODO: Replace $XX with the actual price. This is a placeholder, not a real price. -->
-            <p class="price"><span class="amount">$XX</span></p>
-            <!-- TODO: Stripe Payment Link. Replace REPLACE_WITH_DEPTH_OF_FIELD_LINK with the ID from the Stripe Dashboard, then restore this button's href and label. -->
-            <a class="buy coming-soon" href="#pricing" aria-disabled="true" aria-label="Depth of Field — coming soon">Coming soon</a>
+            <p class="price"><span class="amount">$20</span></p>
+            <a class="buy" href="https://buy.stripe.com/eVqdR960a6rCdIi71I0Ba00" aria-label="Buy Depth of Field for $20">Buy</a>
           </li>
 
 
@@ -104,10 +94,8 @@
             </figure>
             <h3>Sunny 16</h3>
             <p class="desc">The sunny-16 rule: in bright sun, set the aperture to f/16 and the shutter to 1/ISO, then open up as the light falls, toward overcast.</p>
-            <!-- TODO: Replace $XX with the actual price. This is a placeholder, not a real price. -->
-            <p class="price"><span class="amount">$XX</span></p>
-            <!-- TODO: Stripe Payment Link. Replace REPLACE_WITH_SUNNY_16_LINK with the ID from the Stripe Dashboard, then restore this button's href and label. -->
-            <a class="buy coming-soon" href="#pricing" aria-disabled="true" aria-label="Sunny 16 — coming soon">Coming soon</a>
+            <p class="price"><span class="amount">$20</span></p>
+            <a class="buy" href="https://buy.stripe.com/28EfZhgEOeY8cEe3Pw0Ba01" aria-label="Buy Sunny 16 for $20">Buy</a>
           </li>
 
 
@@ -119,10 +107,8 @@
             </figure>
             <h3>Action</h3>
             <p class="desc">Shutter speed and motion: slower speeds such as 1/2 second smear movement; faster speeds such as 1/500 freeze it sharp.</p>
-            <!-- TODO: Replace $XX with the actual price. This is a placeholder, not a real price. -->
-            <p class="price"><span class="amount">$XX</span></p>
-            <!-- TODO: Stripe Payment Link. Replace REPLACE_WITH_ACTION_LINK with the ID from the Stripe Dashboard, then restore this button's href and label. -->
-            <a class="buy coming-soon" href="#pricing" aria-disabled="true" aria-label="Action — coming soon">Coming soon</a>
+            <p class="price"><span class="amount">$20</span></p>
+            <a class="buy" href="https://buy.stripe.com/4gM14nagqcQ0aw6bhY0Ba04" aria-label="Buy Action for $20">Buy</a>
           </li>
         </ul>
       </div>
@@ -131,12 +117,10 @@
     <section id="pricing">
       <div class="wrap">
         <h2>Pricing</h2>
-        <!-- TODO: Replace this placeholder copy and the $XX figures once prices are set. -->
-        <p>Prices will be listed here once the shop opens. The $XX figures above are placeholders, not real prices.</p>
+        <p>Each card is $20. Get all three (Depth of Field, Sunny 16 and Action) as a set for $45.</p>
         <p class="set">
-          <!-- TODO: Stripe Payment Link for a full set. Replace REPLACE_WITH_SET_LINK with the ID from the Stripe Dashboard, then restore this button's href and label. -->
-          <a class="buy coming-soon" href="#pricing" aria-disabled="true" aria-label="Buy a set — coming soon">Coming soon</a>
-          <span class="note">Price coming soon</span>
+          <a class="buy" href="https://buy.stripe.com/dRmdR91JU3fqbAa85M0Ba05" aria-label="Buy the full set for $45">Buy the set</a>
+          <span class="note">$45 for all three</span>
         </p>
       </div>
     </section>

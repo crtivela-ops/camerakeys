@@ -44,7 +44,7 @@ The look follows Oliver's site [crtive.la](https://crtive.la); only styling was 
 - **Weights:** 400 body, 700 headings, nav, labels, and buttons.
 - **Type:** H1 2.75rem bold uppercase, centered; tagline 1rem uppercase; nav 1.2rem bold uppercase; H2 1.5rem bold uppercase, centered; body text 1.1rem, centered, max 800px.
 - **Colors:** background `#111111`, text `#ffffff`, muted text `#bdbdbd`, card surface `#1c1c1c`, accent `#0073e6` (hover `#005bb5`).
-- **Buttons:** crtive.la's “ticket link” style — solid `#0073e6`, white bold uppercase text, `12px 25px` padding, 8px radius, slight scale on hover (off under reduced-motion). Until Stripe Payment Links are added, the buttons are a muted “Coming soon” style and link to `#pricing`.
+- **Buttons:** crtive.la's “ticket link” style — solid `#0073e6`, white bold uppercase text, `12px 25px` padding, 8px radius, slight scale on hover (off under reduced-motion). Buy buttons link to live Stripe Payment Links.
 - **Borders/rules:** none, as on crtive.la; cards use an 8px radius and the 6px color bar.
 
 ## Copy on the page
@@ -60,7 +60,7 @@ The look follows Oliver's site [crtive.la](https://crtive.la); only styling was 
   - **Brighter vs Darker** — The exposure triangle on one card: matching scales of aperture, ISO, and shutter speed, from brighter settings to darker ones.
   - **Action** — Shutter speed and motion: slower speeds such as 1/2 second smear movement; faster speeds such as 1/500 freeze it sharp.
 
-Prices are shown as `$XX` and explained in the Pricing section as placeholders. Buy buttons currently say “Coming soon” and go to `#pricing` so they are not broken Stripe URLs. The footer Etsy link is `#etsy-link-placeholder`. Every placeholder is marked with a `<!-- TODO -->` comment in `index.html`.
+Launch lineup is three cards (Depth of Field, Sunny 16, Action) at $20 each, plus a $45 full set. The footer Etsy link is `#etsy-link-placeholder`. Every placeholder is marked with a `<!-- TODO -->` comment in `index.html`.
 
 ## Color coding
 
