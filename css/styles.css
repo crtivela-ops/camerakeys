@@ -129,8 +129,9 @@ h2 { font-size: 1.5rem; text-align: center; margin-bottom: 20px; }
 .grid > li { display: flex; flex-direction: column; text-align: center; }
 
 .shot { border-radius: 8px; overflow: hidden; background: var(--surface); }
-.shot::before { content: ""; display: block; height: 6px; }
-.shot img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: var(--surface); }
+
+.shot { max-width: 280px; width: 100%; margin: 0 auto; }
+.shot img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--surface); }
 .shot figcaption {
   display: flex;
   justify-content: center;
