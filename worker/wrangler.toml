@@ -1,0 +1,16 @@
+name = "camerakeys-checkout"
+main = "src/index.js"
+compatibility_date = "2026-11-15"
+
+# Put the Stripe secret in with:
+#   npx wrangler secret put STRIPE_SECRET_KEY
+# Use the test key (sk_test_...) first. Never put a key in this file.
+
+# Optional: once you have Price IDs in Stripe, you can set these
+# (wrangler.toml [vars], or Variables in the Cloudflare dashboard)
+# so Checkout uses those prices instead of the built-in $20 / $45 amounts.
+# [vars]
+# STRIPE_PRICE_SUNNY16 = "price_..."
+# STRIPE_PRICE_DOF = "price_..."
+# STRIPE_PRICE_ACTION = "price_..."
+# STRIPE_PRICE_SET = "price_..."

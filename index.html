@@ -22,7 +22,7 @@
   <link rel="canonical" href="https://camerakeys.com/">
   <meta name="theme-color" content="#111111">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/styles.css?v=20261114c">
+  <link rel="stylesheet" href="css/styles.css?v=20261115a">
   <style>
     .rotator { position: relative; width: min(720px, 92vw); aspect-ratio: 16 / 9; margin: 8px auto 28px; border-radius: 8px; overflow: hidden; background: #1c1c1c; }
     .rotator img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; opacity: 0; transition: opacity 1s ease; }
@@ -34,6 +34,7 @@
     =====================================================================
     STRIPE PAYMENT LINKS
     Live links (Stripe Payment Links). Do not add Stripe.js or API keys.
+    These buttons stay in use until WORKER_URL is set in js/cart.js.
 
     Depth of Field:  https://buy.stripe.com/eVqdR960a6rCdIi71I0Ba00
     Sunny 16:        https://buy.stripe.com/28EfZhgEOeY8cEe3Pw0Ba01
@@ -44,6 +45,10 @@
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="hero">
+    <button type="button" class="cart-toggle" aria-controls="cart-panel" aria-expanded="false" aria-label="Open cart, 0 items">
+      Cart
+      <span class="cart-count" aria-live="polite">0</span>
+    </button>
     <div class="wrap">
       <h1>Camera Keys</h1>
     </div>
@@ -79,7 +84,8 @@
             <h3>Sunny 16</h3>
             <p class="desc">The sunny-16 rule: in bright sun, set the aperture to f/16 and the shutter to 1/ISO, then open up as the light falls, toward overcast.</p>
             <p class="price"><span class="amount">$20</span></p>
-            <a class="buy" href="https://buy.stripe.com/28EfZhgEOeY8cEe3Pw0Ba01" aria-label="Buy Sunny 16 for $20">Buy</a>
+            <a class="buy buy-link" href="https://buy.stripe.com/28EfZhgEOeY8cEe3Pw0Ba01" aria-label="Buy Sunny 16 for $20">Buy</a>
+            <button type="button" class="buy add-to-cart" data-id="sunny16" aria-label="Add Sunny 16 to cart">Add to cart</button>
           </li>
 
           <li id="depth-of-field">
@@ -90,7 +96,8 @@
             <h3>Depth of Field</h3>
             <p class="desc">How aperture shapes focus: a wide opening such as f/2.8 gives a shallow field with more blur; a smaller opening such as f/16 keeps more of the scene sharp.</p>
             <p class="price"><span class="amount">$20</span></p>
-            <a class="buy" href="https://buy.stripe.com/eVqdR960a6rCdIi71I0Ba00" aria-label="Buy Depth of Field for $20">Buy</a>
+            <a class="buy buy-link" href="https://buy.stripe.com/eVqdR960a6rCdIi71I0Ba00" aria-label="Buy Depth of Field for $20">Buy</a>
+            <button type="button" class="buy add-to-cart" data-id="dof" aria-label="Add Depth of Field to cart">Add to cart</button>
           </li>
 
 
@@ -104,16 +111,33 @@
             <h3>Action</h3>
             <p class="desc">Shutter speed and motion: slower speeds such as 1/2 second smear movement; faster speeds such as 1/500 freeze it sharp.</p>
             <p class="price"><span class="amount">$20</span></p>
-            <a class="buy" href="https://buy.stripe.com/4gM14nagqcQ0aw6bhY0Ba04" aria-label="Buy Action for $20">Buy</a>
+            <a class="buy buy-link" href="https://buy.stripe.com/4gM14nagqcQ0aw6bhY0Ba04" aria-label="Buy Action for $20">Buy</a>
+            <button type="button" class="buy add-to-cart" data-id="action" aria-label="Add Action to cart">Add to cart</button>
           </li>
         </ul>
         <p class="set">
-          <a class="buy" href="https://buy.stripe.com/dRmdR91JU3fqbAa85M0Ba05" aria-label="Buy the full set for $45">Buy the set</a>
+          <a class="buy buy-link" href="https://buy.stripe.com/dRmdR91JU3fqbAa85M0Ba05" aria-label="Buy the full set for $45">Buy the set</a>
+          <button type="button" class="buy add-to-cart" data-id="set" aria-label="Add the full set to cart">Add the set to cart</button>
           <span class="note">All three for $45</span>
         </p>
       </div>
     </section>
   </main>
+
+  <div class="cart-backdrop"></div>
+  <aside id="cart-panel" class="cart-panel" role="dialog" aria-labelledby="cart-title" aria-modal="true" aria-hidden="true">
+    <div class="cart-head">
+      <h2 id="cart-title">Your cart</h2>
+      <button type="button" class="cart-close" aria-label="Close cart">&times;</button>
+    </div>
+    <p class="cart-empty">Your cart is empty.</p>
+    <ul class="cart-items" hidden></ul>
+    <div class="cart-foot">
+      <p class="cart-subtotal">Subtotal <span class="cart-subtotal-amount">$0</span></p>
+      <p class="cart-error" role="alert" hidden></p>
+      <button type="button" class="buy cart-checkout">Checkout</button>
+    </div>
+  </aside>
 
   <script>
     (function () {
@@ -127,5 +151,6 @@
       }, 3000);
     })();
   </script>
+  <script src="js/cart.js?v=20261115a"></script>
 </body>
 </html>

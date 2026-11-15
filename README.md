@@ -9,11 +9,18 @@ Live site (custom domain pending DNS): [camerakeys.com](https://camerakeys.com/)
 ```
 camkeyguides/
   index.html                  One-page site
+  thanks.html                 Post-checkout thank-you page
   README.md                   This file
   CNAME                       camerakeys.com
   .nojekyll                   Tell GitHub Pages not to run Jekyll
   css/
     styles.css                All styles; no frameworks
+  js/
+    cart.js                   Cart UI; off until WORKER_URL is set
+  worker/
+    README.md                 Setup steps for the Cloudflare Worker
+    wrangler.toml
+    src/index.js              Creates a Stripe Checkout Session
   assets/
     favicon.svg               Simple “C” mark (placeholder logo)
     og-image.png              1200×630 Open Graph image (placeholder)
@@ -34,7 +41,7 @@ camkeyguides/
     crtive-reference-390.png
 ```
 
-There are no scripts, no analytics, and no ads.
+There is no analytics and no ads. `js/cart.js` is the only script besides the image rotator, and it stays inactive until `WORKER_URL` is set.
 
 ## Design (styled after crtive.la)
 
@@ -91,6 +98,9 @@ No HTML change is needed.
 ## Stripe Payment Links
 
 Checkout is Stripe Payment Links. The site is static, so this needs no server, no Stripe.js, and no API keys. The Payment Link URL is safe to publish; secret keys must not be added to this folder.
+
+The live site still uses those Payment Links until a Cloudflare Worker URL is set in `js/cart.js` (`WORKER_URL`). When that constant is empty, the cart stays hidden and the Buy buttons are unchanged. When it is set, the cart becomes the buy path (add to cart, quantity, a single Stripe Checkout for the whole cart). The Worker code and setup steps are in `worker/`. Never put a Stripe secret key in this repo. Use the Worker's free `*.workers.dev` URL; do not point `camerakeys.com` itself at the Worker, or it will replace the GitHub Pages site.
+
 
 All six product URLs, plus an optional “Buy a set” URL, are listed in one config comment at the top of `index.html`. Until those IDs are pasted in, each Buy button is a muted “Coming soon” control that points at `#pricing`, so visitors are not sent to a broken `buy.stripe.com` URL. Each token such as `REPLACE_WITH_FSTOP_LINK` is still in the config comment (and in the button TODO) so one find-and-replace can restore the real link and the “Buy” label later.
 

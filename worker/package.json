@@ -1,0 +1,9 @@
+{
+  "name": "camerakeys-checkout",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/checkout.test.js",
+    "dev": "npx wrangler dev"
+  }
+}
