@@ -404,6 +404,12 @@ button.cart-item-remove,
   transform: none;
 }
 .cart-checkout:disabled:hover { background: #3a3a3a; transform: none; }
+.cart-continue {
+  width: 100%;
+  margin-top: 12px;
+  justify-content: center;
+  text-align: center;
+}
 
 .thanks {
   max-width: 800px;

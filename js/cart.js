@@ -86,6 +86,11 @@
     if (e.key === 'Escape' && document.body.classList.contains('cart-open')) closeCart();
   });
   if (checkoutBtn) checkoutBtn.addEventListener('click', checkout);
+  var continueBtn = document.querySelector('.cart-continue');
+  if (continueBtn) continueBtn.addEventListener('click', function () {
+    lastFocus = null;
+    closeCart();
+  });
 
   if (itemsEl) {
     itemsEl.addEventListener('click', function (e) {
