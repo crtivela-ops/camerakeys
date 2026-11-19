@@ -46,20 +46,20 @@ Do **not** route `camerakeys.com` itself to the Worker. If you add camerakeys.co
 
 A custom subdomain such as `api.camerakeys.com` would also work later, but it means moving the domain’s DNS to Cloudflare. That is optional and not recommended now.
 
-Copy the `workers.dev` URL and send it back so `WORKER_URL` can be set on the site. Until that is set, camerakeys.com keeps the existing per-item Stripe Payment Link buttons and the cart stays hidden.
+Copy the `workers.dev` URL and send it back so `WORKER_URL` can be set on the site. Until that is set, camerakeys.com keeps the existing per-item Stripe Payment Link buttons and the cart stays hidden. Even after it is set, the cart starts in test mode: shoppers still see the Payment Link buttons, and only someone who opens [camerakeys.com/?cart=test](https://camerakeys.com/?cart=test) sees the cart.
 
 ## 5. Test in Stripe test mode, then switch to the live key
 
 Once the site has been updated with your Worker URL:
 
-1. Open [camerakeys.com](https://camerakeys.com), add one or more cards to the cart, and click **Checkout**.
+1. Open [camerakeys.com/?cart=test](https://camerakeys.com/?cart=test), add one or more cards to the cart, and click **Checkout**. (Open [camerakeys.com/?cart=off](https://camerakeys.com/?cart=off) to hide the cart again in that tab.)
 2. You should land on a Stripe checkout page that says **Test mode**.
 3. Use the test card number `4242 4242 4242 4242`, any future expiry date, any three-digit CVC, and a US ZIP code. You will not be charged.
 4. Complete checkout. You should return to [camerakeys.com/thanks.html](https://camerakeys.com/thanks.html). In the Stripe Dashboard (Test mode still on), the payment should show as paid.
 5. When that looks right, switch the Worker to your live key:
    - In Stripe, turn **Test mode** off and copy the **Secret key** from [API keys](https://dashboard.stripe.com/apikeys). It starts with `sk_live_`.
    - In Cloudflare, open the Worker → **Settings** → **Variables and Secrets**, edit `STRIPE_SECRET_KEY`, paste the `sk_live_...` key, and deploy.
-6. Try a real checkout only when you are ready to take a real payment. The Payment Link buttons are removed once the cart is turned on, so the cart is then the only way to buy.
+6. Ask for the cart to be switched to live (`CART_LIVE = true` in `js/cart.js`). Only then do shoppers see the cart, and the Payment Link buttons are hidden, so the cart becomes the way to buy. Try a real checkout only when you are ready to take a real payment.
 
 If checkout shows an error, double-check that the secret is named exactly `STRIPE_SECRET_KEY`, that you deployed after adding it, and that you sent the `workers.dev` URL (not `camerakeys.com`) to be set on the site.
 

@@ -1,16 +1,20 @@
 /**
  * Camera Keys shopping cart.
  *
- * WORKER_URL must stay empty until the Cloudflare Worker is live.
- * While it is empty, the existing Stripe Payment Link buttons stay
- * visible and the cart stays hidden.
+ * WORKER_URL: the Cloudflare Worker's free workers.dev address
+ * (https://camerakeys-checkout.<subdomain>.workers.dev). Never camerakeys.com.
+ * While it is empty, the Stripe Payment Link buttons stay and the cart is hidden.
  *
- * Leave this empty:
+ * CART_LIVE: false = test mode. The cart only appears for someone who opens
+ * camerakeys.com/?cart=test (remembered for that browser tab), so shoppers
+ * keep the Payment Link buttons while the Worker uses the sk_test_ key.
+ * Set to true after the live sk_live_ key is in the Worker.
  */
 (function () {
   'use strict';
 
   var WORKER_URL = '';
+  var CART_LIVE = false;
 
   var STORAGE_KEY = 'camerakeys-cart';
   var MAX_QTY = 10;
@@ -34,8 +38,20 @@
     return url;
   }
 
+  function cartAllowed() {
+    if (CART_LIVE) return true;
+    try {
+      var flag = new URLSearchParams(location.search).get('cart');
+      if (flag === 'test') sessionStorage.setItem('camerakeys-cart-test', '1');
+      if (flag === 'off') sessionStorage.removeItem('camerakeys-cart-test');
+      return sessionStorage.getItem('camerakeys-cart-test') === '1';
+    } catch (e) {
+      return false;
+    }
+  }
+
   var workerUrl = resolveWorkerUrl();
-  if (!workerUrl) return;
+  if (!workerUrl || !cartAllowed()) return;
 
   var cart = loadCart();
   var lastFocus = null;
