@@ -13,7 +13,7 @@
 (function () {
   'use strict';
 
-  var WORKER_URL = '';
+  var WORKER_URL = 'https://camerakeys-checkout.crtivela.workers.dev';
   var CART_LIVE = false;
 
   var STORAGE_KEY = 'camerakeys-cart';
