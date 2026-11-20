@@ -198,19 +198,6 @@ h2 {
 .desc { margin-top: 8px; color: var(--muted); font-size: 1rem; line-height: 1.55; }
 .price { margin-top: auto; padding-top: 14px; font-size: 1.25rem; }
 .price .amount { font-family: var(--display); font-weight: 700; }
-.price .soon {
-  display: inline-block;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: var(--accent);
-  color: #ffffff;
-  font-family: var(--display);
-  font-weight: 600;
-  font-size: 0.95rem;
-  letter-spacing: 0.02em;
-  text-transform: lowercase;
-  line-height: 1.2;
-}
 
 /* Buttons — pink pills */
 .buy {
@@ -234,12 +221,6 @@ h2 {
 }
 .buy:hover { background: var(--accent-hover); text-decoration: none; transform: scale(1.04); }
 .buy:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
-.buy.coming-soon {
-  background: #e6e6e6;
-  color: #555b66;
-  cursor: default;
-}
-.buy.coming-soon:hover { background: #e6e6e6; transform: none; text-decoration: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .buy { transition: none; }
