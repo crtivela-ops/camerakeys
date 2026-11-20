@@ -5,16 +5,15 @@
  * (https://camerakeys-checkout.<subdomain>.workers.dev). Never camerakeys.com.
  * While it is empty, the Stripe Payment Link buttons stay and the cart is hidden.
  *
- * CART_LIVE: false = test mode. The cart only appears for someone who opens
- * camerakeys.com/?cart=test (remembered for that browser tab), so shoppers
- * keep the Payment Link buttons while the Worker uses the sk_test_ key.
- * Set to true after the live sk_live_ key is in the Worker.
+ * CART_LIVE: true = the cart is on for everyone, and Payment Link buttons hide.
+ * Open camerakeys.com/?cart=off (remembered for that browser tab) to show the
+ * Payment Link buttons again. ?cart=on clears that and brings the cart back.
  */
 (function () {
   'use strict';
 
   var WORKER_URL = 'https://camerakeys-checkout.crtivela.workers.dev';
-  var CART_LIVE = false;
+  var CART_LIVE = true;
 
   var STORAGE_KEY = 'camerakeys-cart';
   var MAX_QTY = 10;
@@ -39,11 +38,19 @@
   }
 
   function cartAllowed() {
-    if (CART_LIVE) return true;
     try {
       var flag = new URLSearchParams(location.search).get('cart');
-      if (flag === 'test') sessionStorage.setItem('camerakeys-cart-test', '1');
-      if (flag === 'off') sessionStorage.removeItem('camerakeys-cart-test');
+      if (flag === 'off') {
+        sessionStorage.setItem('camerakeys-cart-off', '1');
+        sessionStorage.removeItem('camerakeys-cart-test');
+      } else if (flag === 'on' || flag === 'test') {
+        sessionStorage.removeItem('camerakeys-cart-off');
+        if (flag === 'test') sessionStorage.setItem('camerakeys-cart-test', '1');
+      }
+      if (sessionStorage.getItem('camerakeys-cart-off') === '1') return false;
+    } catch (e) {}
+    if (CART_LIVE) return true;
+    try {
       return sessionStorage.getItem('camerakeys-cart-test') === '1';
     } catch (e) {
       return false;
